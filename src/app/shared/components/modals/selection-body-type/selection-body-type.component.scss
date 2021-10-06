@@ -1,0 +1,25 @@
+.card-body-type{
+  margin: 20px 0px;
+}
+
+mat-card{
+  cursor: pointer;
+  h2{
+    text-align: center;
+    margin: 20px 0px;
+  }
+
+  img{
+    width: 120px;
+    display: block;
+    margin: auto;
+  }
+}
+
+mat-card:first-child{
+  margin-right: 20px;
+}
+
+mat-card:last-child{
+  margin-left: 20px;
+}

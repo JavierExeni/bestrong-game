@@ -1,0 +1,48 @@
+
+
+
+.modal {
+  font-family: system-ui;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(77, 77, 77, 0.7);
+  transition: ease-out 0.4s;
+  visibility: visible;
+  opacity: 1;
+  z-index: 3;
+}
+
+
+
+.modal-closed {
+  display: none;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.modalcontent {
+  position: relative;
+  background: #fff;
+  padding: 1em 2em;
+  border-radius: 4px;
+}
+
+
+.modalclose {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  color: #585858;
+}
+
+// iamges
+#info-body {
+  border-radius: 8px;
+  margin-top: 20px;
+}

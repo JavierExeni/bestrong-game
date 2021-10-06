@@ -1,0 +1,20 @@
+<section>
+  <img id="fondo-img" src="../../../../assets/images/saitama/saitama1.png" alt="no-image">
+  <div class="box">
+    <div class="form">
+      <h2>Iniciar Sesión</h2>
+      <form action="#">
+        <div class="inputBx">
+          <input type="text" placeholder="Username" />
+        </div>
+        <div class="inputBx">
+          <input type="password" placeholder="Password">
+        </div>
+        <a [routerLink]="['/auth/registro']" id="btn-register">¿No estas registrado?</a>
+        <div class="inputBx btn">
+          <button (click)="login()">LOGIN</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,27 @@
+<div [ngClass]="open == true ? 'modal' : 'modal-closed'" id="modalbox">
+  <div
+    [ngStyle]="{
+      'max-width': OnWay == WAY.PRESENTATION ? '70%' : '90%',
+      height:
+        OnWay == WAY.PRESENTATION || OnWay == WAY.SELECTION_BODY_TYPE
+          ? 'inherit'
+          : '90%',
+      overflow: OnWay == WAY.PRESENTATION ? 'inherit' : 'hidden',
+      'padding-left': OnWay == WAY.PRESENTATION ? '0px' : '32px'
+    }"
+    class="modalcontent"
+  >
+    <presentation
+      *ngIf="OnWay == WAY.PRESENTATION"
+      (seleccion)="next()"
+    ></presentation>
+    <presentation-body-type
+      *ngIf="OnWay == WAY.PRESENTATION_BODY_TYPE"
+      (seleccion)="next()"
+    ></presentation-body-type>
+    <selection-body-type
+      *ngIf="OnWay == WAY.SELECTION_BODY_TYPE"
+      (seleccion)="close()"
+    ></selection-body-type>
+  </div>
+</div>
