@@ -7,12 +7,12 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'principal',
+        path: 'game',
         component: PrincipalComponent
       },
       {
         path: '**',
-        redirectTo: 'principal',
+        redirectTo: 'game',
       }
     ],
   },

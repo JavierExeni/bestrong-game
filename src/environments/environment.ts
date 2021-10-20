@@ -2,8 +2,16 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+const url = 'http://'+window.location.hostname+':8000/api/';
+const urlBase = 'http://'+window.location.hostname+':8000';
 export const environment = {
-  production: false
+  production: false,
+  auth: {
+    login: `${url}token/`,
+    refresh: `${url}token/`,
+  },
+  urlbase:urlBase,
+  apibase: url
 };
 
 /*

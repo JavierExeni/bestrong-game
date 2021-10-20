@@ -5,6 +5,7 @@ import {
   HostListener,
   OnInit,
   Renderer2,
+  SimpleChanges,
   ViewChild,
 } from '@angular/core';
 
@@ -24,6 +25,8 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   @ViewChild('personaje', { static: false }) chpersonaje!: ElementRef;
   @ViewChild('mapa', { static: false }) map!: ElementRef;
 
+  @ViewChild('sensei1', { static: false }) sensei1!: ElementRef;
+
   x = 80;
   y = 34;
   held_directions: string[] = [];
@@ -35,6 +38,11 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     left: 'left',
     right: 'right',
   };
+
+  btnUp: boolean = false;
+  btnDown: boolean = false;
+  btnLeft: boolean = false;
+  btnRight: boolean = false;
 
   constructor(private render2: Renderer2) {}
 
@@ -117,6 +125,25 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     mainch.style.transform = `translate3d( ${this.x * pixelSize}px, ${
       this.y * pixelSize
     }px, 0 )`;
+
+    this.checkCollision();
+  }
+
+  checkCollision() {
+    let x_sensei1 = this.sensei1.nativeElement.offsetTop;
+    let y_sensei1 = this.sensei1.nativeElement.offsetLeft;
+    let width_sensei1 = this.sensei1.nativeElement.offsetWidth;
+    let height_sensei1 = this.sensei1.nativeElement.offsetHeight;
+    if (
+      this.x < x_sensei1 + width_sensei1 &&
+      this.x + width_sensei1 > this.x &&
+      this.y < y_sensei1 + height_sensei1 &&
+      this.y + height_sensei1 > y_sensei1
+    ) {
+      console.log('Se detecto la colision');
+    } else {
+      console.log('No choca');
+    }
   }
 
   ngOnInit(): void {}
