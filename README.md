@@ -127,9 +127,13 @@ Los calculos que se hacen y todo lo enseñado es real:
 Método de Harris-Benedict
 ¿Cómo calcular tus calorías de mantenimiento?
 Hacer una estimación de nuestro metabolismo basal
+
 ![image](https://user-images.githubusercontent.com/48496718/141208709-41b7cc35-5725-4113-98cd-a669ca581478.png)
+
 Añadiendo el gasto energético a nuestra estimación del metabolismo basal 
+
 ![image](https://user-images.githubusercontent.com/48496718/141208723-f3beb63a-5d34-4d64-a251-ef315ccbc4ad.png)
+
 
 UNa vez tengmaos las dos, simplemente se multiplica con el nivel de actividad fisica, de esa forma tendremos nuestras calorias de mantenimiento y dependiendo el objetivo se añaden o se sacan calorias.
 
