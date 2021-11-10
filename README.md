@@ -63,8 +63,13 @@ Objetivos y alcances del usuario
 -          Resistencia
 -          Salud
 Entrenamiento
-Focalizados
-Multiarticulares
+-	FullBody
+Se basa principalmente en la combinación de ejercicios multiarticulares (al igual que las rutinas torso/pierna), dejando como complementarios los ejercicios accesorios monoarticulares.
+- 	Torso Pierna
+Una rutina torso-pierna es un esquema de entrenamiento en el que se divide el cuerpo en dos: torso y pierna, o lo que es lo mismo, tren superior e inferior. 
+De esta forma en los entrenamientos de torso incluiríamos los siguientes patrones de movimiento
+-	Weider
+La rutina Weider es aquella que se enfoca en entrenar uno o dos grupos musculares por sesión mediante varias series y ejercicios.
 
 # Inicio del juego
 El objetivo del juego es que el usuario pueda orientarse en cómo empezar a entrenar Calistenia ¿Cómo? Pues enseñándole conceptos básicos necesarios y luego mostrándole cómo ejecutarlos, explicando y con medio audiovisuales el usuario podrá entender como realizar un ejercicio de forma correcta.
