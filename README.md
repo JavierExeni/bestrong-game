@@ -66,3 +66,10 @@ Entrenamiento
 Focalizados
 Multiarticulares
 
+# Inicio del juego
+El objetivo del juego es que el usuario pueda orientarse en cómo empezar a entrenar Calistenia ¿Cómo? Pues enseñándole conceptos básicos necesarios y luego mostrándole cómo ejecutarlos, explicando y con medio audiovisuales el usuario podrá entender como realizar un ejercicio de forma correcta.
+El usuario una vez esté en el juego tendrá diferentes opciones, puede ir a la tienda y comprar tanto recetas o trucos extras que solo puede conseguir por medio de cierta cantidad de puntos. También podrás ver tu inventario, en este tendrás todo lo que compraste en la tienda. El juego en sí está basado en 3 mapas o niveles, principiante, intermedio y avanzado. Cada nivel tiene 2 caminos uno el cual es el Sensei y otro que es el parque de calistenia.
+Con el sensei podrás informarte y aprender todo lo relacionado a la rutina y los ejercicios de ese mapa por ejemplo el primer mapa que es principiante, el usuario aprenderá sobre Full Body routine y sus ejercicios. Una vez entiendas bien los conceptos podrás ponerte a prueba con las diferentes actividades, trivias, relacionamiento de columnas y relacionamiento de imágenes.
+En el parque de calistenia podrás ver tu calendario de entrenamiento del mes, en el cual podrás ver tus rutinas diarias según la rutina. Cada rutina tiene un botón para ponerle Hecho de esta forma cuando el usuario haya terminado todas las rutinas del mes, podrá avanzar al siguiente nivel.
+
+
