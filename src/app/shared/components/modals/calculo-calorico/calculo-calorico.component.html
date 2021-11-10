@@ -1,0 +1,123 @@
+<div class="body-type">
+  <h1>¡Genial! Ahora calcularemos tus calorias de mantenimiento</h1>
+  <h2>Antes que nada ¿Qué es una caloría?</h2>
+  <p>
+    Las calorías miden la energía que nos proporciona un alimento o una bebida a
+    partir de los carbohidratos, las grasas, las proteínas y el alcohol que
+    contienen.
+    <br />
+    <br />
+    Nuestro cuerpo hace uso de las calorías de los alimentos en diferentes
+    procesos, tales como en la producción de calor o para almacenarlas en forma
+    de grasa. Es decir, nuestro cuerpo usa cierta cantidad de calorías por día
+    para darnos energía y, aquellas que no utiliza a lo largo del día, las
+    almacena a través de la grasa.
+    <br />
+    <br />
+    De manera general, la energía que gastamos a diario se distribuye de la
+    siguiente forma: 60% de la energía la gastamos en procesos como la
+    respiración y la circulación, un 30% en actividad física, y un 10% la
+    utilizamos para la digestión y la absorción de nutrientes.
+  </p>
+  <h2>¿Cómo calcular tus calorías de mantenimiento?</h2>
+  <p>
+    Hay varios metodos diferentes para poder hacer el calculo de tus calorias de
+    mantenimiento, estas se diferencian en su efectividad a la hora del calculo,
+    el Método que usaremos es el de <strong>Harris-Benedict</strong>
+  </p>
+  <h3>Estimación de nuestro Metabolismo Basal</h3>
+  <img
+    id="ejemplo-calculo"
+    src="../../../../../assets/images/informacion/ejemplo-calculo.png"
+    alt="image-calculo"
+  />
+
+  <p>
+    Es por ello que necesitaremos, tu peso en Kg, tu altura en Cm, tu edad en
+    años y claro, tu genero.
+  </p>
+  <form [formGroup]="formBody" class="form-calories">
+    <mat-form-field class="field-calories" appearance="outline">
+      <mat-label>Peso</mat-label>
+      <input
+        type="number"
+        formControlName="peso"
+        matInput
+        placeholder="Peso en Kg"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="field-calories" appearance="outline">
+      <mat-label>Altura</mat-label>
+      <input
+        type="number"
+        formControlName="altura"
+        matInput
+        placeholder="Altura en Cm"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="field-calories" appearance="outline">
+      <mat-label>Edad</mat-label>
+      <input
+        type="number"
+        formControlName="edad"
+        matInput
+        placeholder="Edad en años"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="field-calories" appearance="outline">
+      <mat-label>Genero</mat-label>
+      <mat-select formControlName="genero">
+        <mat-option value="0"> Masculino </mat-option>
+        <mat-option value="1"> Femenino </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+  <h3 *ngIf="formBody.valid">
+    Ahora añadiremos nuestro gasto energético a nuestra estimación del
+    metabolismo basal
+  </h3>
+  <h4 *ngIf="formBody.valid">Selecciona tu nivel de actividad</h4>
+  <mat-selection-list
+    *ngIf="formBody.valid"
+    #options
+    (selectionChange)="calcular(options.selectedOptions.selected)"
+    [multiple]="false"
+  >
+    <mat-list-option
+      class="option"
+      *ngFor="let gasto of TiposGastos"
+      [value]="gasto"
+    >
+      <span>
+        <strong>Opción:</strong> {{ gasto.opcion }} - <strong>Factor:</strong>
+        {{ gasto.factor }}</span
+      >
+    </mat-list-option>
+  </mat-selection-list>
+
+  <div style="text-align: center; margin: 20px 0px; font-size: 20px">
+    Tus calorias de mantenimiento son: <strong>{{ mb }}</strong>
+  </div>
+
+  <a
+    class="enlace-video"
+    target="_blank"
+    href="https://www.youtube.com/watch?v=PHcAdmlG264&t=562s"
+    >Video Explicativo</a
+  >
+
+  <!--<img
+    id="info-body"
+    src="../../../../assets/images/informacion/tipos-cuerpojpg.jpg"
+    alt="no-image"
+  />-->
+  <div
+    style="margin-right: 10px; padding-top: 10px; border-top: 2px solid #ebbd53"
+    class="btn-group"
+  >
+    <button (click)="next()" class="boton" [disabled]="formBody.invalid">Siguiente</button>
+  </div>
+</div>

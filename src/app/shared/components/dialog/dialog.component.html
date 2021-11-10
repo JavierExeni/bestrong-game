@@ -1,7 +1,7 @@
 <div [ngClass]="open == true ? 'modal' : 'modal-closed'" id="modalbox">
   <div
     [ngStyle]="{
-      'max-width': OnWay == WAY.PRESENTATION ? '70%' : '90%',
+      'max-width': OnWay == WAY.PRESENTATION || OnWay == WAY.CALORIES_CALCULATION ? '70%' : '90%',
       height:
         OnWay == WAY.PRESENTATION || OnWay == WAY.SELECTION_BODY_TYPE
           ? 'inherit'
@@ -21,7 +21,11 @@
     ></presentation-body-type>
     <selection-body-type
       *ngIf="OnWay == WAY.SELECTION_BODY_TYPE"
-      (seleccion)="close()"
+      (seleccion)="next()"
     ></selection-body-type>
+    <calculo-calorico
+      *ngIf="OnWay == WAY.CALORIES_CALCULATION"
+      (seleccion)="close()"
+    ></calculo-calorico>
   </div>
 </div>

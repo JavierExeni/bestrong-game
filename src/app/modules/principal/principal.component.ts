@@ -8,6 +8,16 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
+import { UsuarioService } from '../../core/services/usuario.service';
+import { AuthService } from '../../core/services/authentication/auth.service';
+import { Cliente } from '../../shared/models/User/Cliente';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.reducers';
+import Swal from 'sweetalert2';
+import { cargarUsuarioSuccess } from '../../store/actions/usuario.actions';
+import { Subscription } from 'rxjs';
+import { cargarRutina } from '../../store/actions/rutina.actions';
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
@@ -44,7 +54,17 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   btnLeft: boolean = false;
   btnRight: boolean = false;
 
-  constructor(private render2: Renderer2) {}
+  has_cliente = false;
+
+  cliente: Cliente;
+
+  bodySubs: Subscription;
+
+  constructor(
+    private route: Router,
+    private store: Store<AppState>,
+    private usuarioService: UsuarioService
+  ) {}
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -146,7 +166,33 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     }
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let user = localStorage.getItem('user');
+    if (user) this.cliente = JSON.parse(user);
+    this.bodySubs = this.store.select('bodyInfo').subscribe(({ body }) => {
+      if (body != null) {
+        this.cliente = {
+          ...this.cliente,
+          bodyinfo: body.id,
+        };
+        if (this.cliente.id) {
+          this.usuarioService
+            .actualizarUsuario(this.cliente.id, this.cliente)
+            .subscribe((data: any) => {
+              this.store.dispatch(cargarUsuarioSuccess({ cliente: data }));
+              Swal.fire({
+                icon: 'success',
+                title: `¡Tus calorias de mantenimiento son ${body.calorias}!`,
+                text: 'Recuerda tener esto bien en cuenta a la hora de hacer tu dieta.',
+                showConfirmButton: false,
+                timer: 5000,
+              });
+              this.bodySubs.unsubscribe();
+            });
+        }
+      }
+    });
+  }
 
   goUp() {
     var index = this.held_directions.indexOf(this.directions.up);
@@ -206,5 +252,15 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
       this.held_directions.unshift(this.directions.right);
     }
     this.movement();
+  }
+
+  goToCalendar() {
+    console.log(this.cliente.nivel);
+    this.store.dispatch(cargarRutina({ id: this.cliente.nivel }));
+    this.route.navigate(['/principal/calendario/']);
+  }
+
+  goToLesson() {
+    this.route.navigate(['/principal/clase/', this.cliente?.nivel]);
   }
 }

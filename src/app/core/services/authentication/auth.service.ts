@@ -7,16 +7,18 @@ import { Login } from '../../../shared/models/Auth/login';
 import { environment } from '../../../../environments/environment';
 import { Token } from '../../../shared/models/Auth/token';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../../store/app.reducers';
+import { cargarUsuario } from '../../../store/actions/usuario.actions';
 
 const helper = new JwtHelperService();
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  private readonly JWT_TOKEN = 'access_cl';
-  private readonly REFRESH_TOKEN = 'refresh_cl';
+  private readonly JWT_TOKEN = 'access';
+  private readonly REFRESH_TOKEN = 'refresh';
   private loggedUser: string = '';
 
   user: any = null;
@@ -26,13 +28,16 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private route: Router,
+    private store: Store<AppState>
   ) {}
+
 
   login(user: Login): Observable<boolean> {
     return this.http.post<any>(environment.auth.login, user).pipe(
-      tap((tokens:any) => {
+      tap((tokens: any) => {
         const decoded = helper.decodeToken(tokens['access']);
         console.log(decoded);
+        this.store.dispatch(cargarUsuario({ id: Number(decoded['user_id']) }));
         //let type = decoded['user_type'];
         this.doLoginUser(user.username, tokens);
       }),

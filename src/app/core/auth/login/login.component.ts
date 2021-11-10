@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Login } from 'src/app/shared/models/Auth/login';
 import { AuthService } from '../../services/authentication/auth.service';
 
 @Component({
@@ -8,15 +10,34 @@ import { AuthService } from '../../services/authentication/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private router: Router, private authService: AuthService) {}
+  loginform!: FormGroup;
 
-  ngOnInit(): void {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private fb: FormBuilder,
+  ) {}
+
+  ngOnInit(): void {
+    this.loginform = this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required],
+    });
+  }
 
   login() {
-    /*this.authService.login().subscribe((res:any) => {
-
-    });*/
-    this.router.navigate(['principal/game']);
-    localStorage.setItem('hasUser', 'true');
+    let login: Login = {
+      username: this.loginform.get('username')?.value,
+      password: this.loginform.get('password')?.value,
+    };
+    this.authService.login(login).subscribe(
+      (res: any) => {
+        this.router.navigate(['principal/game']);
+        localStorage.setItem('hasUser', 'true');
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 }

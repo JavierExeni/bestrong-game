@@ -1,0 +1,59 @@
+<div class="leccion">
+  <h1>
+    <span>¡Empecemos con las lecciones!</span>
+    <mat-icon>school</mat-icon>
+  </h1>
+
+  <ng-container *ngIf="lecciones.length > 0; else nohay">
+    <mat-accordion>
+      <mat-expansion-panel
+        class="expansion"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+        *ngFor="let leccion of lecciones"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>{{ leccion.nombre }}</strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            Nivel: {{ getNivel(leccion.nivel) }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h2>Detalle</h2>
+        <p>
+          {{ leccion.descripcion }}
+        </p>
+
+        <div class="video">
+          <youtube-player
+            [videoId]="leccion.path_video"
+            suggestedQuality="highres"
+            [height]="400"
+            [width]="700"
+            [startSeconds]="4"
+            [endSeconds]="8"
+          >
+          </youtube-player>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+
+  <mat-card matRipple (click)="hacerActividad()">
+    <div class="icon">
+      <mat-icon>fitness_center</mat-icon>
+    </div>
+    <div>
+      <h1>¡Pon a prueba tus conocimientos!</h1>
+      <p>
+        En este apartado se te pondra a prueba con diferentes actividades, tanto
+        trivias, como selección de imágenes o incluso selección de categorias.
+      </p>
+    </div>
+  </mat-card>
+
+  <ng-template #nohay>
+    <h1 class="no_list">No hay lecciones...</h1>
+  </ng-template>
+</div>

@@ -1,0 +1,34 @@
+.card-prod {
+  margin-top: 20px;
+}
+
+.producto {
+  display: flex;
+}
+
+.imagen-producto {
+  img {
+    width: 200px;
+    border-radius: 6px;
+  }
+  margin-right: 20px;
+}
+
+.detalle {
+  width: 100%;
+}
+
+.group-btn {
+  display: flex;
+  align-items: center;
+  text-align: end;
+  margin-top: 20px;
+  button {
+    margin-right: 20px;
+  }
+}
+
+.nomoney {
+  text-align: center;
+  color: rgb(190, 22, 22);
+}

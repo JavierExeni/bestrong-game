@@ -1,0 +1,29 @@
+<div>
+  <mat-card>
+    <h1>
+      <span>{{ rutina.nombre }} </span>
+      <mat-icon class="done" *ngIf="finish">task_alt</mat-icon>
+      <mat-icon class="undone" *ngIf="!finish">fitness_center</mat-icon>
+    </h1>
+
+    <div *ngFor="let ejer of ejercicios">
+      <h2>{{ ejer.nombre }}</h2>
+      <ul>
+        <li><strong>Sesiones:</strong> {{ ejer.sets }}</li>
+        <li><strong>Repeticiones:</strong> {{ ejer.reps }}</li>
+        <li><strong>Tiempo de descanso:</strong> {{ ejer.rest }}</li>
+      </ul>
+    </div>
+
+    <div class="group-btn">
+      <button
+        (click)="cambiarEstado()"
+        type="button"
+        mat-raised-button
+        color="primary"
+      >
+        ¡Hecho!
+      </button>
+    </div>
+  </mat-card>
+</div>

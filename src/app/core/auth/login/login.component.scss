@@ -25,7 +25,6 @@ section {
 
 #btn-register:hover{
   font-size: 18px;
-
 }
 
 .box{
@@ -72,7 +71,7 @@ section {
 }
 
 .box .form .inputBx input::placeholder{
-  color: #fff;
+  color: lightgray;
 }
 
 .box .form .inputBx input, button{
@@ -103,6 +102,10 @@ section {
   letter-spacing: 1px;
   cursor: pointer;
   font-weight: 700;
+}
+
+.box .form .inputBx button:disabled{
+  background: lightgray;
 }
 
 .box .form .inputBx button:hover{

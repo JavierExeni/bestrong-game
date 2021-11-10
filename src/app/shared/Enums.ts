@@ -1,5 +1,35 @@
-export enum WAY{
+export enum WAY {
   PRESENTATION = 1,
   PRESENTATION_BODY_TYPE = 2,
-  SELECTION_BODY_TYPE = 3
+  SELECTION_BODY_TYPE = 3,
+  CALORIES_CALCULATION = 4,
+}
+
+export enum TIPO_PRODUCTO {
+  RECETA = 0,
+  TRUCO = 1,
+}
+
+export enum TIPO_NIVEL {
+  PRINCIPIANTE = 1,
+  INTERMEDIO = 2,
+  AVANZADO = 3,
+}
+
+export enum TIPO_OBJETIVO {
+  HIPERTROFIA = 0,
+  DEFINICION = 1,
+  RESISTENCIA = 2,
+}
+
+export enum TIPO_CUERPO {
+  ECTOMORFO = 0,
+  ENDOMORFO = 1,
+  MESOMORFO = 2,
+}
+
+export enum TIPO_ACTIVIDAD {
+  TRIVIA = 0,
+  'COMPLETADO DE COLUMNAS' = 1,
+  'RELACIONAR IMAGENES' = 2,
 }

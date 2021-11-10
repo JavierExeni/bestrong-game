@@ -3,16 +3,16 @@
   <div class="box">
     <div class="form">
       <h2>Iniciar Sesión</h2>
-      <form action="#">
+      <form [formGroup]="loginform">
         <div class="inputBx">
-          <input type="text" placeholder="Username" />
+          <input type="text" formControlName="username" placeholder="Username" />
         </div>
         <div class="inputBx">
-          <input type="password" placeholder="Password">
+          <input type="password" formControlName="password" placeholder="Password">
         </div>
         <a [routerLink]="['/auth/registro']" id="btn-register">¿No estas registrado?</a>
         <div class="inputBx btn">
-          <button (click)="login()">LOGIN</button>
+          <button [disabled]="!loginform.valid" type="button" (click)="login()">LOGIN</button>
         </div>
       </form>
     </div>

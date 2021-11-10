@@ -72,7 +72,7 @@ section {
 }
 
 .box .form .inputBx input::placeholder{
-  color: #fff;
+  color: lightgray;
 }
 
 .box .form .inputBx input, button{
@@ -93,6 +93,26 @@ section {
   text-align: center;
 }
 
+select{
+  width: 100%;
+  outline: none;
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  background: transparent;
+  padding: 8px 10px;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: 300;
+  box-shadow: inset 0 0 25px rgba($color: #000000, $alpha: 0.2);
+  font-family: 'minecraft';
+  appearance: none;
+
+  option{
+    background: black;
+  }
+
+}
+
 .box .form .inputBx button{
   background: #fff;
   color: #111;
@@ -108,4 +128,8 @@ section {
 .box .form .inputBx button:hover{
   background: rgba($color: #fff, $alpha: 0.8);
   font-weight: bold;
+}
+
+.box .form .inputBx button:disabled{
+  background: lightgray;
 }

@@ -1,35 +1,59 @@
 <section>
-  <img id="fondo-img" src="../../../../assets/images/saitama/genos2.png" alt="no-image">
+  <img
+    id="fondo-img"
+    src="../../../../assets/images/saitama/genos2.png"
+    alt="no-image"
+  />
   <div class="box">
     <div class="form">
       <h2>Registrate</h2>
-      <form action="#">
+      <form [formGroup]="registro">
         <div class="inputBx">
-          <input type="text" placeholder="Nombre Completo" />
+          <input
+            type="text"
+            formControlName="nombre"
+            placeholder="Nombre Completo"
+          />
         </div>
         <div class="inputBx">
-          <input type="text" placeholder="Apellidos" />
+          <input
+            type="text"
+            formControlName="apellido"
+            placeholder="Apellidos"
+          />
         </div>
         <div class="inputBx">
-          <input type="email" placeholder="Correo Electronico" />
+          <input
+            type="email"
+            formControlName="email"
+            placeholder="Correo Electronico"
+          />
         </div>
         <div class="inputBx">
-          <input type="number" placeholder="Edad" />
+          <input type="number" formControlName="edad" placeholder="Edad" />
         </div>
         <div class="inputBx">
-          <select>
+          <select formControlName="genero">
             <option value="0">Masculino</option>
             <option value="1">Femenino</option>
           </select>
         </div>
         <div class="inputBx">
-          <input type="text" placeholder="Username" />
+          <input
+            type="text"
+            formControlName="username"
+            placeholder="Username"
+          />
         </div>
         <div class="inputBx">
-          <input type="password" placeholder="Password">
+          <input
+            type="password"
+            formControlName="password"
+            placeholder="Password"
+          />
         </div>
         <div class="inputBx btn">
-          <button (click)="registrar()">ACEPTAR</button>
+          <button [disabled]="!registro.valid" type="button" (click)="registrar()">ACEPTAR</button>
         </div>
       </form>
     </div>

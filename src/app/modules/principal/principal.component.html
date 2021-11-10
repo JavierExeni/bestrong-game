@@ -7,8 +7,8 @@
   <!--
    see the video tutorial for how this kind of thing works:
    https://youtu.be/H3Fn33lYuE0
--->
-  <app-dialog></app-dialog>
+
+  <app-dialog *ngIf="cliente?.bodyinfo == null"></app-dialog>-->
 
   <div>
     <div class="frame">
@@ -23,8 +23,8 @@
             <div class="shadow pixel-art"></div>
             <div class="character_spritesheet pixel-art"></div>
           </div>
-          <div #sensei1 class="sensei"></div>
-          <div #parque class="park"></div>
+          <div (click)="goToLesson()" #sensei1 class="sensei"></div>
+          <div (click)="goToCalendar()" #parque class="park"></div>
         </div>
 
         <div class="dpad">
@@ -68,7 +68,7 @@
                 />
               </svg>
             </button>
-            <button  class="dpad-button dpad-up">
+            <button class="dpad-button dpad-up">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 -0.5 13 13"

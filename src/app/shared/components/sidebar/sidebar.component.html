@@ -1,78 +1,78 @@
-<div [ngClass]="sidebar_open ? 'sidebar close' : 'sidebar'">
+<div *ngIf="validar()" [ngClass]="sidebar_open == false ? 'sidebar close' : 'sidebar'">
   <div class="logo-details">
     <i (click)="changeEventBtn()" class="bx bx-menu"></i>
     <span class="logo_name">BeStrong</span>
   </div>
-  <div *ngIf="!sidebar_open" class="progress">
-    <mat-progress-bar mode="determinate" [value]="value"></mat-progress-bar>
-    <span id="puntos">200 pts.</span>
+  <div *ngIf="sidebar_open" class="progress">
+    <mat-progress-bar mode="determinate" [value]="getValue()"></mat-progress-bar>
+    <span id="puntos">{{cliente.puntos}} pts.</span>
   </div>
   <ul class="nav-links">
     <li>
-      <a href="#">
+      <a routerLink="/principal/game">
         <i class="bx bxs-home"></i>
         <span class="link_name">Home</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="#">Juego</a></li>
+        <li><a class="link_name">Juego</a></li>
       </ul>
     </li>
     <li [ngClass]="arrow1 ? 'showMenu' : ''">
       <div class="iocn-link">
-        <a href="#">
+        <a>
           <i class="bx bx-store-alt"></i>
           <span class="link_name">Tienda</span>
         </a>
         <i (click)="dropdown(1)" class="bx bxs-chevron-down arrow"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Tienda</a></li>
-        <li><a href="#">Trucos</a></li>
-        <li><a href="#">Recetas</a></li>
+        <li><a class="link_name">Tienda</a></li>
+        <li><a (click)="open_store()">Trucos</a></li>
+        <li><a (click)="open_store()">Recetas</a></li>
       </ul>
     </li>
     <li [ngClass]="arrow2 ? 'showMenu' : ''">
       <div class="iocn-link">
-        <a href="#">
+        <a>
           <i class="bx bxs-book"></i>
           <span class="link_name">Inventario</span>
         </a>
         <i (click)="dropdown(2)" class="bx bxs-chevron-down arrow"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name" href="#">Inventario</a></li>
-        <li><a href="#">Workouts</a></li>
-        <li><a href="#">Conceptos</a></li>
-        <li><a href="#">Trucos</a></li>
-        <li><a href="#">Recetas</a></li>
+        <li><a class="link_name">Inventario</a></li>
+        <li><a>Workouts</a></li>
+        <li><a>Conceptos</a></li>
+        <li><a>Trucos</a></li>
+        <li><a>Recetas</a></li>
       </ul>
     </li>
     <li>
-      <a href="#">
+      <a>
         <i class="bx bx-history"></i>
         <span class="link_name">Historial</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="#">Historial</a></li>
+        <li><a class="link_name">Historial</a></li>
       </ul>
     </li>
     <li>
-      <a href="#">
+      <a>
         <i class="bx bxs-user"></i>
         <span class="link_name">Mi Perfil</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="#">Mi Perfil</a></li>
+        <li><a class="link_name">Mi Perfil</a></li>
       </ul>
     </li>
 
     <li>
-      <a href="#">
+      <a>
         <i class="bx bx-cog"></i>
         <span class="link_name">Configuraciones</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name" href="#">Setting</a></li>
+        <li><a class="link_name">Setting</a></li>
       </ul>
     </li>
     <li>
@@ -84,7 +84,7 @@
           <div class="profile_name">Javier Exeni</div>
           <div class="job">Web Desginer</div>
         </div>
-        <i class="bx bx-log-out"></i>
+        <i (click)="cerrarSesion()" class="bx bx-log-out"></i>
       </div>
     </li>
   </ul>

@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { TiendaComponent } from 'src/app/modules/components/modals/tienda/tienda.component';
+import { AuthService } from '../../../core/services/authentication/auth.service';
+import { Cliente } from '../../models/User/Cliente';
+import { AppState } from '../../../store/app.reducers';
+import { Store } from '@ngrx/store';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent implements OnInit {
-  sidebar_open: boolean = true;
+  sidebar_open: boolean = false;
 
   arrow1: boolean = false;
   arrow2: boolean = false;
@@ -14,15 +22,41 @@ export class SidebarComponent implements OnInit {
 
   value: number = 20;
 
+  user!: any;
 
-  constructor() { }
+  cliente: Cliente;
+
+  constructor(
+    public auth: AuthService,
+    private router: Router,
+    private dialog: MatDialog,
+    private store: Store<AppState>
+  ) {}
 
   ngOnInit(): void {
+    Swal.fire({
+      title: '¡Cargando Juego!',
+      timerProgressBar: true,
+      timer: 2000,
+      didOpen: () => {
+        Swal.showLoading();
+      },
+    });
+    this.store.select('usuario').subscribe(({ user }) => {
+      console.log('*************************');
+      console.log(user);
+      let olduser = localStorage.getItem('user');
+      if (olduser) this.cliente = JSON.parse(olduser);
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
+        let olduser = localStorage.getItem('user');
+        if (olduser) this.cliente = JSON.parse(olduser);
+      }
+    });
   }
 
   changeEventBtn() {
     this.sidebar_open = !this.sidebar_open;
-    console.log(this.sidebar_open);
   }
 
   dropdown(tipo: number) {
@@ -39,11 +73,37 @@ export class SidebarComponent implements OnInit {
     }
   }
 
-  validar(){
-    /*if(this.auth.getUser()){
+  validar() {
+    if (this.auth.getUser()) {
       return true;
     }
-    return false;*/
+    return false;
   }
 
+  getValue() {
+    return this.cliente?.puntos / 10;
+  }
+
+  open_store() {
+    const dialog_config = new MatDialogConfig();
+    dialog_config.disableClose = false;
+    dialog_config.autoFocus = true;
+    dialog_config.width = '50%';
+    //dialog_config.panelClass = ['custom_dialog', 'my-dialog'];
+    let dialogo = this.dialog.open(TiendaComponent, dialog_config);
+    dialogo.afterClosed().subscribe(
+      (result) => {
+        if (result) {
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  cerrarSesion() {
+    this.auth.logout();
+    this.router.navigate(['login']);
+  }
 }
