@@ -48,13 +48,14 @@ Viene a ser algo más tangible por parte del usuario, no premia esfuerzo o avanc
 Una vez el usuario empiece la etapa de conceptualización obtendrá su recompensa por comenzar su camino de calistenia en el juego. Pódra conseguir diferentes recompensas mientras va pasando el juego ya sea por ser constante en la aplicación.
 	
 # Actividades
-1.- Relacionamiento o enlace de imágenes o gifs a los diferentes ejercicios/comidas nutricionales/Rutinas conforme a diferentes personas ( 100 pts )
-2.- Trivia para las conceptualizaciones ( 50 pts )
-3.- Completado de columnas, donde tendrás diferentes comidas y tienes que poner cada comida en la columna correspondiente.  ( 100 pts )
-4.- Hacer y completar las diferentes rutinas básicas (150 pts)
-5.- Al final de una rutina, hacer repeticiones máximas de una ejercicio (150 pts)
-6.- Armado de tu rutina de entrenamiento personalizada ( 250 pts )
-Información
+1. Relacionamiento o enlace de imágenes o gifs a los diferentes ejercicios/comidas nutricionales/Rutinas conforme a diferentes personas ( 100 pts )
+2. Trivia para las conceptualizaciones ( 50 pts )
+3. Completado de columnas, donde tendrás diferentes comidas y tienes que poner cada comida en la columna correspondiente.  ( 100 pts )
+4. Hacer y completar las diferentes rutinas básicas (150 pts)
+5. Al final de una rutina, hacer repeticiones máximas de una ejercicio (150 pts)
+6. Armado de tu rutina de entrenamiento personalizada ( 250 pts )
+ 
+# formación
 
 Hay varias etapas que un usuario tiene que pasar antes de empezar el juego:
 1.	Información corporal y objetivos del usuario
