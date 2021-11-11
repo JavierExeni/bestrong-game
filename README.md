@@ -123,6 +123,10 @@ El usuario una vez esté en el juego tendrá diferentes opciones, puede ir a la 
 Con el sensei podrás informarte y aprender todo lo relacionado a la rutina y los ejercicios de ese mapa por ejemplo el primer mapa que es principiante, el usuario aprenderá sobre Full Body routine y sus ejercicios. Una vez entiendas bien los conceptos podrás ponerte a prueba con las diferentes actividades, trivias, relacionamiento de columnas y relacionamiento de imágenes.
 En el parque de calistenia podrás ver tu calendario de entrenamiento del mes, en el cual podrás ver tus rutinas diarias según la rutina. Cada rutina tiene un botón para ponerle Hecho de esta forma cuando el usuario haya terminado todas las rutinas del mes, podrá avanzar al siguiente nivel.
 
+
+![Gamificación](https://user-images.githubusercontent.com/48496718/141314278-3efe84bc-6adf-4ca9-8786-a14ddda001f7.jpg)
+
+
 Los calculos que se hacen y todo lo enseñado es real:
 
 Método de Harris-Benedict
