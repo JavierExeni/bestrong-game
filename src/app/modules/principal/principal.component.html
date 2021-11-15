@@ -1,14 +1,7 @@
-<!--
-   see the video tutorial for how this kind of thing works:
-   https://youtu.be/H3Fn33lYuE0
--->
-
 <div class="fullheight">
-  <!--
-   see the video tutorial for how this kind of thing works:
-   https://youtu.be/H3Fn33lYuE0
-
-  <app-dialog *ngIf="cliente?.bodyinfo == null"></app-dialog>-->
+  <ng-template *ngIf="cliente">
+    <app-dialog *ngIf="cliente.bodyinfo == null"></app-dialog>
+  </ng-template>
 
   <div>
     <div class="frame">

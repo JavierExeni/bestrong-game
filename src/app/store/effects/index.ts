@@ -3,6 +3,7 @@ import { BodyInfoEffects } from './bodyinfo.effects';
 import { ActividadEffects } from './actividad.effects';
 import { RutinaEffects } from './rutina.effects';
 import { EjercicioEffects } from './ejercicio.effects';
+import { InventarioEffects } from './inventario.effects';
 
 export const EffectsArray: any[] = [
   UsuarioEffects,
@@ -10,4 +11,5 @@ export const EffectsArray: any[] = [
   ActividadEffects,
   RutinaEffects,
   EjercicioEffects,
+  InventarioEffects,
 ];

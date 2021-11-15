@@ -44,11 +44,14 @@ export class UsuarioEffects {
                 cliente: user,
               });
             }),
-            catchError((error) =>
-              of(usuarioActions.cargarUsuarioError({ payload: error }))
-            )
+            catchError((error) => {
+              console.log(error);
+              return of(usuarioActions.cargarUsuarioError({ payload: error }));
+            })
           );
       })
     )
   );
+
+
 }

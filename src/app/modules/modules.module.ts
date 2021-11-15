@@ -11,7 +11,7 @@ import { MatCardModule } from '@angular/material/card';
 import { PrincipalComponent } from './principal/principal.component';
 import { SharedModule } from '../shared/shared.module';
 import { CalendarioComponent } from './calendario/calendario.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular'; // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin!
 import interactionPlugin from '@fullcalendar/interaction'; // a plugin!
@@ -24,6 +24,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { RutinaComponent } from './rutina/rutina.component';
 import { FiltroPipe } from './pipes/filtro.pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { GameComponent } from './game/game.component';
+import { InventarioAllComponent } from './components/inventario-all/inventario-all.component';
+import { ProfileComponent } from './components/modals/profile/profile.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -41,18 +47,25 @@ FullCalendarModule.registerPlugins([
     ActividadComponent,
     RutinaComponent,
     FiltroPipe,
+    GameComponent,
+    InventarioAllComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ModulesRoutingModule,
     YouTubePlayerModule,
+    ReactiveFormsModule,
     SharedModule,
+    MatFormFieldModule,
     DragDropModule,
     FullCalendarModule,
+    MatInputModule,
     MatListModule,
     MatCardModule,
     MatRadioModule,
+    MatSelectModule,
     MatButtonModule,
     MatExpansionModule,
     MatIconModule,

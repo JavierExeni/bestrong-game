@@ -26,3 +26,8 @@ export const cargarPuntosUsuario = createAction(
   props<{ puntos: number }>()
 );
 
+export const cargarBodyUsuario = createAction(
+  '[USUARIO] Cargar Body Usuario',
+  props<{ bodyinfo: number }>()
+);
+

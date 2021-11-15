@@ -7,6 +7,8 @@ import { Cliente } from '../../models/User/Cliente';
 import { AppState } from '../../../store/app.reducers';
 import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
+import { cargarInventario } from '../../../store/actions/inventario.actions';
+import { ProfileComponent } from '../../../modules/components/modals/profile/profile.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -89,11 +91,32 @@ export class SidebarComponent implements OnInit {
     dialog_config.disableClose = false;
     dialog_config.autoFocus = true;
     dialog_config.width = '50%';
+    dialog_config.height = '80%';
     //dialog_config.panelClass = ['custom_dialog', 'my-dialog'];
     let dialogo = this.dialog.open(TiendaComponent, dialog_config);
     dialogo.afterClosed().subscribe(
       (result) => {
         if (result) {
+          this.store.dispatch(cargarInventario({ id: result.id }));
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  openProfile(){
+    const dialog_config = new MatDialogConfig();
+    dialog_config.disableClose = false;
+    dialog_config.autoFocus = true;
+    dialog_config.width = '50%';
+    dialog_config.data = this.cliente;
+    let dialogo = this.dialog.open(ProfileComponent, dialog_config);
+    dialogo.afterClosed().subscribe(
+      (result) => {
+        if (result) {
+
         }
       },
       (error) => {

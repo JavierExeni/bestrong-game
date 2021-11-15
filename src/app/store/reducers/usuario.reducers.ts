@@ -6,6 +6,7 @@ import {
   cargarUsuarioSuccess,
   cargarPuntosUsuario,
   cargarUsuarioSuccessUpdate,
+  cargarBodyUsuario
 } from '../actions';
 
 export interface UsuarioState {
@@ -37,6 +38,13 @@ const _usuarioReducer = createReducer(
     user: {
       puntos: puntos,
       ...state.user,
+    },
+  })),
+  on(cargarBodyUsuario, (state, { bodyinfo }) => ({
+    ...state,
+    user: {
+      ...state.user,
+      bodyinfo: bodyinfo
     },
   })),
   on(cargarUsuarioSuccess, (state, { cliente }) => ({

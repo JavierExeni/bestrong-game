@@ -40,11 +40,10 @@
         <i (click)="dropdown(2)" class="bx bxs-chevron-down arrow"></i>
       </div>
       <ul class="sub-menu">
-        <li><a class="link_name">Inventario</a></li>
-        <li><a>Workouts</a></li>
-        <li><a>Conceptos</a></li>
-        <li><a>Trucos</a></li>
-        <li><a>Recetas</a></li>
+        <li routerLink="inventario"><a class="link_name">Inventario</a></li>
+        <li routerLink="inventario"><a>Conceptos</a></li>
+        <li routerLink="inventario"><a>Trucos</a></li>
+        <li routerLink="inventario"><a>Recetas</a></li>
       </ul>
     </li>
     <li>
@@ -56,13 +55,13 @@
         <li><a class="link_name">Historial</a></li>
       </ul>
     </li>
-    <li>
-      <a>
+    <li (click)="openProfile()">
+      <a >
         <i class="bx bxs-user"></i>
         <span class="link_name">Mi Perfil</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name">Mi Perfil</a></li>
+        <li (click)="openProfile()"><a class="link_name">Mi Perfil</a></li>
       </ul>
     </li>
 
@@ -81,7 +80,7 @@
           <!--<img src="image/profile.jpg" alt="profileImg">-->
         </div>
         <div class="name-job">
-          <div class="profile_name">Javier Exeni</div>
+          <div *ngIf="cliente" class="profile_name">{{cliente.first_name}}</div>
           <div class="job">Web Desginer</div>
         </div>
         <i (click)="cerrarSesion()" class="bx bx-log-out"></i>

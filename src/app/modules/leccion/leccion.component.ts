@@ -92,7 +92,7 @@ export class LeccionComponent implements OnInit, OnDestroy {
             puntos: result.puntos,
             id: this.cliente.id,
             bodyinfo: this.cliente.bodyinfo,
-            nivel: this.cliente.nivel,
+            producto: this.cliente.producto,
           };
           this.store.dispatch(cargarUsuarioSuccess({ cliente }));
         }

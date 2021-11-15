@@ -4,3 +4,4 @@ export * from './actividad.reducers';
 export * from './rutina.reducers';
 export * from './ejercicio.reducers';
 export * from './filtro.reducer';
+export * from './inventario.reducers';

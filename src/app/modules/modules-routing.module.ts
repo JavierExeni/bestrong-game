@@ -5,10 +5,13 @@ import { PrincipalComponent } from './principal/principal.component';
 import { LeccionComponent } from './leccion/leccion.component';
 import { ClaseComponent } from './clase/clase.component';
 import { ActividadComponent } from './actividad/actividad.component';
+import { GameComponent } from './game/game.component';
+import { InventarioAllComponent } from './components/inventario-all/inventario-all.component';
 
 const routes: Routes = [
   {
     path: '',
+    component: GameComponent,
     children: [
       {
         path: 'game',
@@ -29,6 +32,10 @@ const routes: Routes = [
       {
         path: 'clase/:id',
         component: ClaseComponent,
+      },
+      {
+        path: 'inventario',
+        component: InventarioAllComponent,
       },
       {
         path: '**',

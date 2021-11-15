@@ -1,10 +1,16 @@
-<mat-grid-list class="inventorio" cols="6" rowHeight="120px">
-  <mat-grid-tile class="box-inventory">
-    <img src="../../../../assets/images/informacion/document.png" alt="no-image">
+<mat-grid-list
+  *ngIf="productos.length > 0; else nohay"
+  class="inventorio"
+  cols="6"
+  rowHeight="120px"
+>
+  <mat-grid-tile *ngFor="let producto of productos" class="box-inventory">
+    <img
+      src="../../../../assets/images/informacion/document.png"
+      alt="no-image"
+    />
   </mat-grid-tile>
-  <mat-grid-tile class="box-inventory">...</mat-grid-tile>
-  <mat-grid-tile class="box-inventory">...</mat-grid-tile>
-  <mat-grid-tile class="box-inventory">...</mat-grid-tile>
-  <mat-grid-tile class="box-inventory">...</mat-grid-tile>
-  <mat-grid-tile class="box-inventory">...</mat-grid-tile>
 </mat-grid-list>
+<ng-template #nohay>
+  <h3 id="valid-inv">No tienes nada en tu inventario...</h3>
+</ng-template>

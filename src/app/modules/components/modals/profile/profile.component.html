@@ -1,0 +1,50 @@
+<mat-card>
+  <div class="content">
+    <img src="../../../../../assets/images/profile.png" alt="no-image">
+    <div class="detalle">
+      <form [formGroup]="userForm">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre Completo</mat-label>
+            <input matInput formControlName="first_name" placeholder="Nombre">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Apellidos</mat-label>
+            <input matInput formControlName="last_name" placeholder="Apéllidos">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput formControlName="username" placeholder="UserName">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electronico</mat-label>
+            <input matInput formControlName="email" placeholder="email">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Edad</mat-label>
+            <input matInput formControlName="edad" placeholder="edad">
+          </mat-form-field>
+        </p>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Genero</mat-label>
+            <mat-select formControlName="genero">
+              <mat-option value="0">Masculino</mat-option>
+              <mat-option value="1">Femenino</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </p>
+      </form>
+
+    </div>
+  </div>
+
+</mat-card>

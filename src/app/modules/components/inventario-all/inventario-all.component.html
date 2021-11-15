@@ -1,0 +1,46 @@
+<div class="content">
+  <h1>Tu Inventario</h1>
+  <h2>Todas las compras que hagas, ¡los productos estarán seguros aqui!</h2>
+  <ng-container *ngIf="productos.length > 0; else nohay">
+    <mat-accordion>
+      <mat-expansion-panel
+        class="expansion"
+        (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false"
+        *ngFor="let producto of productos"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <strong>{{ producto.nombre }}</strong>
+          </mat-panel-title>
+          <mat-panel-description>
+            Tipo: {{ getTipo(producto.tipo_producto) }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h2>Detalle</h2>
+        <div class="inner-content">
+          <img [src]="producto.file" alt="no-image" />
+          <p>
+            {{ producto.description }}
+          </p>
+        </div>
+
+        <div class="video">
+          <youtube-player
+            [videoId]="producto.path_video"
+            suggestedQuality="highres"
+            [height]="400"
+            [width]="700"
+            [startSeconds]="4"
+            [endSeconds]="8"
+          >
+          </youtube-player>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </ng-container>
+
+  <ng-template #nohay>
+    <h3 class="no_list">No hay lecciones...</h3>
+  </ng-template>
+</div>

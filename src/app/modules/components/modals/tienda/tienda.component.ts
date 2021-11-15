@@ -8,6 +8,7 @@ import { Store } from '@ngrx/store';
 import { setFiltro } from '../../../../store/actions/filtro.actions';
 import { Cliente } from 'src/app/shared/models/User/Cliente';
 import { cargarUsuarioSuccess } from '../../../../store/actions/usuario.actions';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tienda',
@@ -15,7 +16,7 @@ import { cargarUsuarioSuccess } from '../../../../store/actions/usuario.actions'
   styleUrls: ['./tienda.component.scss'],
 })
 export class TiendaComponent implements OnInit {
-  productos!: Producto[];
+  productos!: Producto[];s
 
   filtroActual: filtrosValidos;
 
@@ -25,6 +26,7 @@ export class TiendaComponent implements OnInit {
 
   constructor(
     private tiendaService: TiendaService,
+    private dialog_ref: MatDialogRef<TiendaComponent>,
     private store: Store<AppState>
   ) {}
 
@@ -69,6 +71,13 @@ export class TiendaComponent implements OnInit {
       return;
     }
     let puntos = this.cliente.puntos - producto.precio_pts;
+    if (this.cliente.producto) {
+      this.cliente.producto.push(producto.id);
+    } else {
+      this.cliente.producto = [producto.id];
+    }
+
+
     let cliente: Cliente = {
       edad: this.cliente.edad,
       email: this.cliente.email,
@@ -80,9 +89,10 @@ export class TiendaComponent implements OnInit {
       puntos: puntos,
       id: this.cliente.id,
       bodyinfo: this.cliente.bodyinfo,
-      nivel: this.cliente.nivel,
+      producto: this.cliente.producto,
     };
     this.store.dispatch(cargarUsuarioSuccess({ cliente: cliente }));
+    this.dialog_ref.close({id: producto.id})
   }
 
   validar() {

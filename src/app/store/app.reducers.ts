@@ -9,6 +9,7 @@ export interface AppState {
   rutina: reducers.RutinaState;
   ejercicio: reducers.EjercicioState;
   filtro: filtrosValidos;
+  inventario: reducers.InventarioState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
@@ -18,4 +19,5 @@ export const appReducers: ActionReducerMap<AppState> = {
   rutina: reducers.rutinaReducer,
   ejercicio: reducers.ejercicioReducer,
   filtro: reducers.filtroReducer,
+  inventario: reducers.inventarioReducer,
 };

@@ -1,16 +1,22 @@
-.inventorio{
+.inventorio {
   width: 70%;
   margin: auto;
   margin-top: 3%;
 }
 
-.box-inventory{
+.box-inventory {
   border: 8px solid #4b3621;
   border-radius: 8px;
   background-color: rgb(221, 201, 173);
 
-  img{
+  img {
     width: 100px;
   }
+}
 
+#valid-inv {
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  margin-top: 4%;
 }

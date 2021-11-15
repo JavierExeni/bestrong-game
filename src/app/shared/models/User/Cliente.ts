@@ -1,3 +1,4 @@
+import { Producto } from '../Tienda/Producto';
 export class Cliente {
   constructor(
     public edad: number,
@@ -10,6 +11,6 @@ export class Cliente {
     public id?: number,
     public puntos?: number,
     public bodyinfo?: number,
-    public nivel?: number
+    public producto?: number[]
   ) {}
 }
