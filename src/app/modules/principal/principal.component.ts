@@ -21,6 +21,7 @@ import {
 } from '../../store/actions/usuario.actions';
 import { Subscription } from 'rxjs';
 import { cargarRutina } from '../../store/actions/rutina.actions';
+import { Rutina } from '../../shared/models/Workout/Rutina';
 
 export enum KEY_CODE {
   RIGHT_ARROW = 39,
@@ -63,7 +64,15 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
 
   bodySubs: Subscription;
 
-  constructor(private route: Router, private store: Store<AppState>) {}
+  nivel;
+
+  rutina: Rutina;
+
+  constructor(
+    private route: Router,
+    private store: Store<AppState>,
+    private usuarService: UsuarioService
+  ) {}
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
@@ -118,7 +127,13 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
 
     //Limits (gives the illusion of walls)
     var leftLimit = -8;
-    var rightLimit = 15 * 11 + 8;
+
+    if (this.nivel != 1) {
+      var rightLimit = 20 * 18 + 2;
+    } else {
+      var rightLimit = 15 * 11 + 8;
+    }
+
     var topLimit = -8 + 32;
     var bottomLimit = 15 * 7;
     if (this.x < leftLimit) {
@@ -168,6 +183,7 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     let user = localStorage.getItem('user');
     if (user) this.cliente = JSON.parse(user);
+
     this.bodySubs = this.store.select('bodyInfo').subscribe(({ body }) => {
       if (body != null) {
         if (body.id != null) {
@@ -193,6 +209,19 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
         }
       }
     });
+    this.obtenerRutina();
+  }
+
+  obtenerRutina() {
+    this.usuarService.getRutinasByUser(this.cliente.id).subscribe(
+      (res: any) => {
+        this.rutina = res;
+        this.nivel = this.rutina.nivel;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   goUp() {
@@ -258,12 +287,12 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   goToCalendar() {
     // Necesito el nivel
 
-    this.store.dispatch(cargarRutina({ id: 1 }));
+    this.store.dispatch(cargarRutina({ id: this.rutina.id }));
     this.route.navigate(['/principal/calendario/']);
   }
 
   goToLesson() {
     // Necesito el nivel
-    this.route.navigate(['/principal/clase/', 1]);
+    this.route.navigate(['/principal/clase/', this.rutina.nivel]);
   }
 }

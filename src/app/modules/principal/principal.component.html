@@ -11,13 +11,15 @@
       <div class="corner_bottomright"></div>
 
       <div class="camera">
-        <div #mapa class="map pixel-art">
+        <div #mapa [ngClass]="nivel != 1 ? 'map2 pixel-art': 'map pixel-art'">
           <div #personaje class="character" facing="down" walking="true">
             <div class="shadow pixel-art"></div>
             <div class="character_spritesheet pixel-art"></div>
           </div>
           <div (click)="goToLesson()" #sensei1 class="sensei"></div>
           <div (click)="goToCalendar()" #parque class="park"></div>
+          <div *ngIf="nivel != 1" (click)="goToLesson()" #sensei2 class="sensei2"></div>
+          <div *ngIf="nivel != 1" (click)="goToCalendar()" #parque2 class="park2"></div>
         </div>
 
         <div class="dpad">

@@ -20,7 +20,7 @@ export class UsuarioEffects {
         this.usuariosService.ObtenerUsuarioId(action.id).pipe(
           map((user) => {
             localStorage.setItem('user', JSON.stringify(user));
-            return usuarioActions.cargarUsuarioSuccess({ cliente: user });
+            return usuarioActions.cargarUsuarioSuccessLogin({ cliente: user });
           }),
           catchError((error) =>
             of(usuarioActions.cargarUsuarioError({ payload: error }))
@@ -52,6 +52,4 @@ export class UsuarioEffects {
       })
     )
   );
-
-
 }

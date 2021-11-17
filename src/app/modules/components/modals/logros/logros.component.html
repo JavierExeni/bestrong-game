@@ -1,0 +1,12 @@
+<mat-card>
+  <h1>¡Tus Logros!</h1>
+  <div *ngIf="logros.length > 0; else nohay" >
+    <div *ngFor="let logro of logros else nohay">
+
+    </div>
+
+  </div>
+  <ng-template #nohay>
+    <h3 class="no_list">No tienes logros...</h3>
+  </ng-template>
+</mat-card>

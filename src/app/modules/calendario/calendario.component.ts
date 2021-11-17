@@ -11,6 +11,8 @@ import { RutinaComponent } from '../rutina/rutina.component';
 import { cargarEjercicio } from '../../store/actions/ejercicio.actions';
 import { Subscription } from 'rxjs';
 import { Rutina } from '../../shared/models/Workout/Rutina';
+import { updateRutina } from '../../store/actions/rutina.actions';
+import { Cliente } from '../../shared/models/User/Cliente';
 
 @Component({
   selector: 'app-calendario',
@@ -33,23 +35,25 @@ export class CalendarioComponent implements OnInit {
 
   rutina: Rutina;
 
+  cliente: Cliente;
+
   rutinaSubs: Subscription;
   ejeSubs: Subscription;
 
   constructor(private store: Store<AppState>, private dialog: MatDialog) {}
 
   ngOnInit(): void {
+    let user = localStorage.getItem('user');
+    if (user) this.cliente = JSON.parse(user);
     this.rutinaSubs = this.store.select('rutina').subscribe(({ rutina }) => {
-      console.log(rutina);
       if (rutina) {
+        console.log(rutina);
         this.rutina = rutina;
         this.store.dispatch(cargarEjercicio({ id: rutina.id }));
+        this.configuration();
         this.rutinaSubs.unsubscribe();
       }
     });
-
-
-    this.configuration();
   }
 
   handleDateClick(arg: any) {
@@ -57,7 +61,7 @@ export class CalendarioComponent implements OnInit {
   }
 
   openRoutine(data) {
-    console.log(data.event._def.extendedProps);
+    console.log(data.event);
     const dialog_config = new MatDialogConfig();
     dialog_config.disableClose = false;
     dialog_config.autoFocus = true;
@@ -89,23 +93,16 @@ export class CalendarioComponent implements OnInit {
       events: this.events,
       eventClick: this.openRoutine.bind(this),
     };
-    this.getMondays();
-    this.getWednesday();
-    this.getFriday();
-  }
-
-  getWednesday() {
-    var miercoles = moment().startOf('month').day('Wednesday');
-    if (miercoles.date() > 7) miercoles.add(7, 'd');
-    var month = miercoles.month();
-    while (month === miercoles.month()) {
-      let dateTime = moment(miercoles).format(this.format);
-      this.events.push({
-        title: 'Full Body Workout',
-        date: dateTime,
-        finish: false,
-      });
-      miercoles.add(7, 'd');
+    if (this.rutina.nivel == 1) {
+      this.getMondays();
+      this.getWednesday();
+      this.getFriday();
+    }
+    if (this.rutina.nivel == 2) {
+      this.getMondays();
+      this.getTuesdays();
+      this.getThursday();
+      this.getFriday();
     }
   }
 
@@ -116,11 +113,56 @@ export class CalendarioComponent implements OnInit {
     while (month === monday.month()) {
       let dateTime = moment(monday).format(this.format);
       this.events.push({
-        title: 'Full Body Workout',
+        title: this.rutina.nombre,
         date: dateTime,
         finish: false,
       });
       monday.add(7, 'd');
+    }
+  }
+
+  getTuesdays() {
+    var tuesday = moment().startOf('month').day('Tuesday');
+    if (tuesday.date() > 7) tuesday.add(7, 'd');
+    var month = tuesday.month();
+    while (month === tuesday.month()) {
+      let dateTime = moment(tuesday).format(this.format);
+      this.events.push({
+        title: this.rutina.nombre,
+        date: dateTime,
+        finish: false,
+      });
+      tuesday.add(7, 'd');
+    }
+  }
+
+  getWednesday() {
+    var miercoles = moment().startOf('month').day('Wednesday');
+    if (miercoles.date() > 7) miercoles.add(7, 'd');
+    var month = miercoles.month();
+    while (month === miercoles.month()) {
+      let dateTime = moment(miercoles).format(this.format);
+      this.events.push({
+        title: this.rutina.nombre,
+        date: dateTime,
+        finish: false,
+      });
+      miercoles.add(7, 'd');
+    }
+  }
+
+  getThursday() {
+    var thursday = moment().startOf('month').day('Thursday');
+    if (thursday.date() > 7) thursday.add(7, 'd');
+    var month = thursday.month();
+    while (month === thursday.month()) {
+      let dateTime = moment(thursday).format(this.format);
+      this.events.push({
+        title: this.rutina.nombre,
+        date: dateTime,
+        finish: false,
+      });
+      thursday.add(7, 'd');
     }
   }
 
@@ -131,11 +173,23 @@ export class CalendarioComponent implements OnInit {
     while (month === friday.month()) {
       let dateTime = moment(friday).format(this.format);
       this.events.push({
-        title: 'Full Body Workout',
+        title: this.rutina.nombre,
         date: dateTime,
         finish: false,
       });
       friday.add(7, 'd');
     }
+  }
+
+  nextLevel() {
+    // Actualizar nivel del usuario
+    // Dar primer logro
+    this.store.dispatch(
+      updateRutina({
+        rutina: this.rutina.id,
+        user: this.cliente.id,
+        nivel: this.rutina.nivel,
+      })
+    );
   }
 }

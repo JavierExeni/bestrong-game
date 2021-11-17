@@ -6,6 +6,11 @@ export const cargarUsuario = createAction(
   props<{ id: number }>()
 );
 
+export const cargarUsuarioSuccessLogin = createAction(
+  '[USUARIO] Cargar Usuario Success Login',
+  props<{ cliente: Cliente }>()
+);
+
 export const cargarUsuarioSuccess = createAction(
   '[USUARIO] Cargar Usuario Success',
   props<{ cliente: Cliente }>()

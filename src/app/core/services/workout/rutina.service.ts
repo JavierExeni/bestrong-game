@@ -15,4 +15,14 @@ export class RutinaService {
     const url = `${environment.apibase}rutinas/rutina/lista-rutinas/`;
     return this.http.post(url, body);
   }
+
+  nextLevel(rutina: number, user: number, nivel: number) {
+    let body = {
+      rutina: rutina,
+      nivel: nivel,
+      user: user,
+    };
+    const url = `${environment.apibase}rutinas/rutina/update-rutina/`;
+    return this.http.post(url, body);
+  }
 }

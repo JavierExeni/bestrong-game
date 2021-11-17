@@ -15,14 +15,21 @@ export class UsuarioService {
     return this.http.post(url, cliente);
   }
 
-  ObtenerUsuarioId(id:number): Observable<any>{
+  ObtenerUsuarioId(id: number): Observable<any> {
     const url = `${environment.apibase}auth/user/${id}/`;
     return this.http.get(url);
   }
 
-  actualizarUsuario(id: number, cliente: Cliente){
+  actualizarUsuario(id: number, cliente: Cliente) {
     const url = `${environment.apibase}auth/user/${id}/`;
     return this.http.patch(url, cliente);
   }
 
+  getRutinasByUser(id: number) {
+    let body = {
+      user: 1,
+    };
+    const url = `${environment.apibase}auth/user/get-rutina/`;
+    return this.http.post(url, body);
+  }
 }

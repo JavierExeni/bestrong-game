@@ -41,5 +41,6 @@ export class RutinaComponent implements OnInit {
 
   cambiarEstado() {
     this.finish = true;
+    this.dialog_ref.close()
   }
 }

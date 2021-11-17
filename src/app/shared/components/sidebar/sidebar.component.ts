@@ -9,6 +9,7 @@ import { Store } from '@ngrx/store';
 import Swal from 'sweetalert2';
 import { cargarInventario } from '../../../store/actions/inventario.actions';
 import { ProfileComponent } from '../../../modules/components/modals/profile/profile.component';
+import { LogrosComponent } from '../../../modules/components/modals/logros/logros.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -106,7 +107,7 @@ export class SidebarComponent implements OnInit {
     );
   }
 
-  openProfile(){
+  openProfile() {
     const dialog_config = new MatDialogConfig();
     dialog_config.disableClose = false;
     dialog_config.autoFocus = true;
@@ -116,7 +117,24 @@ export class SidebarComponent implements OnInit {
     dialogo.afterClosed().subscribe(
       (result) => {
         if (result) {
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
 
+  abrirLogros() {
+    const dialog_config = new MatDialogConfig();
+    dialog_config.disableClose = false;
+    dialog_config.autoFocus = true;
+    dialog_config.width = '50%';
+    dialog_config.data = this.cliente;
+    let dialogo = this.dialog.open(LogrosComponent, dialog_config);
+    dialogo.afterClosed().subscribe(
+      (result) => {
+        if (result) {
         }
       },
       (error) => {

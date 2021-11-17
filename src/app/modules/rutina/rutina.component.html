@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="ejercicios.length > 0 else nohay">
   <mat-card>
     <h1>
       <span>{{ rutina.nombre }} </span>
@@ -27,3 +27,6 @@
     </div>
   </mat-card>
 </div>
+<ng-template #nohay>
+  <h3>No hay Ejercicios registrados...</h3>
+</ng-template>

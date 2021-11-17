@@ -13,6 +13,7 @@ import {
 } from '../../store/actions/usuario.actions';
 import { Cliente } from 'src/app/shared/models/User/Cliente';
 import { Subscription } from 'rxjs';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-leccion',
@@ -71,7 +72,7 @@ export class LeccionComponent implements OnInit, OnDestroy {
 
   hacerActividad() {
     const dialog_config = new MatDialogConfig();
-    dialog_config.disableClose = true;
+    dialog_config.disableClose = false;
     dialog_config.autoFocus = true;
     dialog_config.width = '50%';
     dialog_config.data = this.lecciones;
@@ -81,6 +82,12 @@ export class LeccionComponent implements OnInit, OnDestroy {
       (result) => {
         if (result) {
           console.log('Resultadoooo');
+          Swal.fire({
+            icon: 'success',
+            title: '¡Genial!',
+            text: `¡Haz conseguido ${result.puntos} puntos!`,
+            timer: 1500,
+          });
           let cliente: Cliente = {
             edad: this.cliente.edad,
             email: this.cliente.email,
@@ -89,10 +96,10 @@ export class LeccionComponent implements OnInit, OnDestroy {
             genero: this.cliente.genero,
             password: this.cliente.password,
             username: this.cliente.username,
-            puntos: result.puntos,
+            puntos: this.cliente.puntos + result.puntos,
             id: this.cliente.id,
-            bodyinfo: this.cliente.bodyinfo,
-            producto: this.cliente.producto,
+            bodyinfo: this.cliente.bodyinfo['id'],
+            producto: this.cliente.producto['id'],
           };
           this.store.dispatch(cargarUsuarioSuccess({ cliente }));
         }

@@ -30,4 +30,22 @@ export class RutinaEffects {
       )
     )
   );
+
+  updateRutina$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(rutinaActions.updateRutina),
+      mergeMap((action) =>
+        this.rutinasService
+          .nextLevel(action.rutina, action.nivel, action.user)
+          .pipe(
+            map((rutina: any) => {
+              return rutinaActions.cargarRutinaSuccess({ rutina: rutina });
+            }),
+            catchError((error) =>
+              of(rutinaActions.cargarRutinaError({ payload: error }))
+            )
+          )
+      )
+    )
+  );
 }

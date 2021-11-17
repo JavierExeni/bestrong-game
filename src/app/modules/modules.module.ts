@@ -30,6 +30,8 @@ import { ProfileComponent } from './components/modals/profile/profile.component'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { LogrosComponent } from './components/modals/logros/logros.component';
+import { ProductoDetailComponent } from './components/modals/producto-detail/producto-detail.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -50,6 +52,8 @@ FullCalendarModule.registerPlugins([
     GameComponent,
     InventarioAllComponent,
     ProfileComponent,
+    LogrosComponent,
+    ProductoDetailComponent,
   ],
   imports: [
     CommonModule,

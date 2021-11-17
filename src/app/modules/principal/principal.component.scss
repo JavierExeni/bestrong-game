@@ -43,6 +43,18 @@
   position: relative;
 }
 
+.map2 {
+  image-rendering: pixelated;
+  //background-image: url("https://assets.codepen.io/21542/CameraDemoMap.png");
+  background-image: url("../../../assets/images/map/map1.png");
+  background-size: 100%;
+  width: calc(24 * var(--grid-cell));
+  height: calc(21 * var(--grid-cell));
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+
 .character {
   width: calc( var(--grid-cell)* 2 );
   height: calc( var(--grid-cell)* 2 );
@@ -200,4 +212,26 @@
   overflow: hidden;
   top: 317px;
   left: 46px;
+}
+
+
+.sensei2{
+  cursor: pointer;
+  width: 50px;
+  height: 100px;
+  position: absolute;
+  overflow:hidden;
+  top: 345px;
+  right: 50px;
+}
+
+
+.park2{
+  cursor: pointer;
+  width: 156px;
+  height: 132px;
+  position: absolute;
+  overflow: hidden;
+  top: 317px;
+  left: 850px;
 }

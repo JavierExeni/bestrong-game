@@ -4,12 +4,15 @@
   cols="6"
   rowHeight="120px"
 >
-  <mat-grid-tile *ngFor="let producto of productos" class="box-inventory">
-    <img
-      src="../../../../assets/images/informacion/document.png"
-      alt="no-image"
-    />
-  </mat-grid-tile>
+  <div *ngFor="let producto of productos">
+    <mat-grid-tile class="content-box"  (click)="llevarInventario(producto)" class="box-inventory">
+      <img
+        src="../../../../assets/images/informacion/document.png"
+        alt="no-image"
+      />
+    </mat-grid-tile>
+    <span class="hide">{{producto.nombre}}</span>
+  </div>
 </mat-grid-list>
 <ng-template #nohay>
   <h3 id="valid-inv">No tienes nada en tu inventario...</h3>

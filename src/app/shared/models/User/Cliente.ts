@@ -11,6 +11,6 @@ export class Cliente {
     public id?: number,
     public puntos?: number,
     public bodyinfo?: number,
-    public producto?: number[]
+    public producto?: any[],
   ) {}
 }

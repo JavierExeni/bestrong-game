@@ -15,3 +15,8 @@ export const cargarRutinaError = createAction(
   '[RUTINA] Cargar Rutina Error',
   props<{ payload: any }>()
 );
+
+export const updateRutina = createAction(
+  '[RUTINA] Update Rutina',
+  props<{ rutina: number; user: number; nivel: number }>()
+);

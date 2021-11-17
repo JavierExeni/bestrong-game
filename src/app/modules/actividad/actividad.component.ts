@@ -50,29 +50,24 @@ export class ActividadComponent implements OnInit, OnDestroy {
   TIPO_ACTIVIDAD = TIPO_ACTIVIDAD;
   COMPLETADO = TIPO_ACTIVIDAD['COMPLETADO DE COLUMNAS'];
 
-  data_count: number = 2;
+  data_count: number = 0;
   data_enter: number = 0;
 
-  todo = [
-    'Buena planificación para principiantes',
-    'Pierdes muy poco peso',
-    'Ganancia de Fuerza',
-    'Es con pesas',
-    'Necesitas un gym',
-  ];
+  todo = [];
 
   done = [];
 
+  opciones_correctas = [];
+
   drop(event: CdkDragDrop<string[]>) {
-    if (
-      ['Buena planificación para principiantes', 'Ganancia de Fuerza'].includes(
-        event.item.data
-      )
-    ) {
+    if (this.opciones_correctas.includes(event.item.data)) {
       console.log(event);
       this.data_enter += 1;
       console.log(this.data_enter);
-      if (this.data_enter === this.data_count) {
+      if (this.data_enter === this.opciones_correctas.length) {
+        this.store.dispatch(
+          sacarActividad({ unsetindex: 0, actvidad_id: this.actividad.id })
+        );
         this.store.dispatch(BorrarTodo());
         this.dialog_ref.close({
           puntos: this.puntos,
@@ -117,6 +112,19 @@ export class ActividadComponent implements OnInit, OnDestroy {
             this.new_opciones = flattenedArray.filter(
               (opcion) => this.actividad.id == opcion.actividad
             );
+            if (this.actividad.tipo_actividad == this.COMPLETADO) {
+              console.log(this.new_opciones[0].opcion);
+              let opciones = this.new_opciones[0].opcion
+                .split('-')[0]
+                .split(',');
+              console.log(this.new_opciones[0].opcion);
+              this.new_opciones[0].opcion;
+              this.todo = opciones;
+              this.opciones_correctas = this.new_opciones[0].opcion
+                .split('-')[1]
+                .split(',');
+            }
+            console.log(this.new_opciones);
           }
         }
       });
@@ -150,19 +158,32 @@ export class ActividadComponent implements OnInit, OnDestroy {
       this.puntos += this.actividad.puntos;
     }
 
-    // sacar actividad y opciones del state
+    setTimeout(() => {
+      this.flag = 0;
+      // sacar actividad y opciones del state
+      this.store.dispatch(
+        sacarActividad({ unsetindex: 0, actvidad_id: this.actividad.id })
+      );
+      if (this.actividades.length == 0) {
+        console.log('Cerrrar modal', this.puntos);
+        this.store.dispatch(BorrarTodo());
+        this.dialog_ref.close({
+          puntos: this.puntos,
+        });
+      }
+      this.pregunta_actual += 1;
+    }, 1000);
+  }
 
-    this.store.dispatch(
-      sacarActividad({ unsetindex: 0, actvidad_id: this.actividad.id })
-    );
-    if (this.actividades.length == 0) {
-      console.log('Cerrrar modal', this.puntos);
-      this.store.dispatch(BorrarTodo());
-      this.dialog_ref.close({
-        puntos: this.puntos,
-      });
-    }
-    this.pregunta_actual += 1;
+  obtenerRespuesta() {
+    console.log(this.new_opciones);
+    let opcion = '';
+    this.new_opciones.forEach((element) => {
+      if (element.op_correcta) {
+        opcion = element.opcion;
+      }
+    });
+    return opcion;
   }
 
   getTipo(tipo) {

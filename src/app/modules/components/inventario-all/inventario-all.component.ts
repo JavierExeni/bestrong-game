@@ -4,6 +4,7 @@ import { AppState } from '../../../store/app.reducers';
 import { Producto } from '../../../shared/models/Tienda/Producto';
 import { TIPO_PRODUCTO } from '../../../shared/Enums';
 import { Cliente } from '../../../shared/models/User/Cliente';
+import { cargarUsuario } from '../../../store/actions/usuario.actions';
 
 @Component({
   selector: 'app-inventario-all',
@@ -23,7 +24,7 @@ export class InventarioAllComponent implements OnInit {
     this.store.select('inventario').subscribe(({ productos }) => {
       let olduser = localStorage.getItem('user');
       if (olduser) this.cliente = JSON.parse(olduser);
-      this.productos = productos;
+      this.productos = this.cliente.producto;
     });
   }
 

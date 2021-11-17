@@ -6,7 +6,8 @@ import {
   cargarUsuarioSuccess,
   cargarPuntosUsuario,
   cargarUsuarioSuccessUpdate,
-  cargarBodyUsuario
+  cargarBodyUsuario,
+  cargarUsuarioSuccessLogin,
 } from '../actions';
 
 export interface UsuarioState {
@@ -44,8 +45,14 @@ const _usuarioReducer = createReducer(
     ...state,
     user: {
       ...state.user,
-      bodyinfo: bodyinfo
+      bodyinfo: bodyinfo,
     },
+  })),
+  on(cargarUsuarioSuccessLogin, (state, { cliente }) => ({
+    ...state,
+    loading: false,
+    loaded: true,
+    user: { ...cliente },
   })),
   on(cargarUsuarioSuccess, (state, { cliente }) => ({
     ...state,

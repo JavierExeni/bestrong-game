@@ -16,7 +16,8 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./tienda.component.scss'],
 })
 export class TiendaComponent implements OnInit {
-  productos!: Producto[];s
+  productos!: Producto[];
+  s;
 
   filtroActual: filtrosValidos;
 
@@ -72,11 +73,14 @@ export class TiendaComponent implements OnInit {
     }
     let puntos = this.cliente.puntos - producto.precio_pts;
     if (this.cliente.producto) {
-      this.cliente.producto.push(producto.id);
+      let ids = [];
+      this.cliente.producto.forEach((element) => {
+        ids.push(element.id);
+      });
+      this.cliente.producto = [...ids, producto.id];
     } else {
       this.cliente.producto = [producto.id];
     }
-
 
     let cliente: Cliente = {
       edad: this.cliente.edad,
@@ -88,11 +92,14 @@ export class TiendaComponent implements OnInit {
       username: this.cliente.username,
       puntos: puntos,
       id: this.cliente.id,
-      bodyinfo: this.cliente.bodyinfo,
+      bodyinfo: this.cliente.bodyinfo['id'],
       producto: this.cliente.producto,
     };
+    console.log('Antes de actualizar usuario');
+    console.log(cliente);
+    // Se actualiza el usuario
     this.store.dispatch(cargarUsuarioSuccess({ cliente: cliente }));
-    this.dialog_ref.close({id: producto.id})
+    this.dialog_ref.close({ id: producto.id });
   }
 
   validar() {

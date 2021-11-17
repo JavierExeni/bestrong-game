@@ -14,7 +14,7 @@
         <span class="link_name">Home</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name">Juego</a></li>
+        <li routerLink="/principal/game"><a class="link_name">Juego</a></li>
       </ul>
     </li>
     <li [ngClass]="arrow1 ? 'showMenu' : ''">
@@ -47,12 +47,12 @@
       </ul>
     </li>
     <li>
-      <a>
-        <i class="bx bx-history"></i>
-        <span class="link_name">Historial</span>
+      <a (click)="abrirLogros()">
+        <i class='bx bx-trophy'></i>
+        <span class="link_name">Logros</span>
       </a>
       <ul class="sub-menu blank">
-        <li><a class="link_name">Historial</a></li>
+        <li (click)="abrirLogros()"><a class="link_name">Logros</a></li>
       </ul>
     </li>
     <li (click)="openProfile()">

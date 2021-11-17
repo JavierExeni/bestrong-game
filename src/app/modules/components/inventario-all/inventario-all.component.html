@@ -19,7 +19,10 @@
         </mat-expansion-panel-header>
         <h2>Detalle</h2>
         <div class="inner-content">
-          <img [src]="producto.file" alt="no-image" />
+          <img
+            [src]="'http://127.0.0.1:8000' + producto.file"
+            alt="no-image"
+          />
           <p>
             {{ producto.description }}
           </p>

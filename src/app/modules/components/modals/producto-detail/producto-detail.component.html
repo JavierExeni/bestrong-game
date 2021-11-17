@@ -1,0 +1,22 @@
+<mat-card>
+  <h1>{{ producto.nombre }}</h1>
+  <h2>Detalle</h2>
+  <div class="inner-content">
+    <img [src]="'http://127.0.0.1:8000' + producto.file" alt="no-image" />
+    <p>
+      {{ producto.description }}
+    </p>
+  </div>
+
+  <div class="video">
+    <youtube-player
+      [videoId]="producto.path_video"
+      suggestedQuality="highres"
+      [height]="400"
+      [width]="700"
+      [startSeconds]="4"
+      [endSeconds]="8"
+    >
+    </youtube-player>
+  </div>
+</mat-card>
