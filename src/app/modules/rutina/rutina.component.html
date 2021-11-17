@@ -1,4 +1,4 @@
-<div *ngIf="ejercicios.length > 0 else nohay">
+<div *ngIf="ejercicios.length > 0; else nohay">
   <mat-card>
     <h1>
       <span>{{ rutina.nombre }} </span>
@@ -6,13 +6,29 @@
       <mat-icon class="undone" *ngIf="!finish">fitness_center</mat-icon>
     </h1>
 
-    <div *ngFor="let ejer of ejercicios">
-      <h2>{{ ejer.nombre }}</h2>
-      <ul>
-        <li><strong>Sesiones:</strong> {{ ejer.sets }}</li>
-        <li><strong>Repeticiones:</strong> {{ ejer.reps }}</li>
-        <li><strong>Tiempo de descanso:</strong> {{ ejer.rest }}</li>
-      </ul>
+    <div class="item-rutina" *ngFor="let ejer of ejercicios">
+      <div class="rutina-content">
+        <img [src]="'http://127.0.0.1:8000' + ejer.file" alt="no-image" />
+        <div>
+          <h2>{{ ejer.nombre }}</h2>
+          <ul>
+            <li><strong>Sesiones:</strong> {{ ejer.sets }}</li>
+            <li><strong>Repeticiones:</strong> {{ ejer.reps }}</li>
+            <li><strong>Tiempo de descanso:</strong> {{ ejer.rest }}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="video">
+        <youtube-player
+          [videoId]="ejer.path_video"
+          suggestedQuality="highres"
+          [height]="400"
+          [width]="700"
+          [startSeconds]="4"
+          [endSeconds]="8"
+        >
+        </youtube-player>
+      </div>
     </div>
 
     <div class="group-btn">

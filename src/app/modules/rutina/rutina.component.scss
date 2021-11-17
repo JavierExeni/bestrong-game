@@ -7,7 +7,7 @@ ul {
   margin-bottom: 1px solid black;
 }
 
-.rutina{
+.rutina {
   margin-bottom: 10px;
 }
 
@@ -33,4 +33,26 @@ h1 {
   text-align: end;
 }
 
+img {
+  width: 200px;
+  border-radius: 10px;
+  margin-right: 20px;
+}
 
+.item-rutina{
+  margin-bottom: 30px;
+}
+
+.rutina-content {
+  display: flex;
+  align-items: center;
+  width: 700px;
+  margin: auto;
+}
+
+
+.video {
+  width: 700px;
+  margin: auto;
+  margin-top: 20px;
+}
