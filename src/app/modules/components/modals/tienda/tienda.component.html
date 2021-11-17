@@ -1,44 +1,45 @@
-<h1>¡Tienda Calistenica!</h1>
-<div class="group-btn">
-  <button (click)="cambiarFiltro('Truco')" mat-raised-button color="accent">
-    Trucos
-  </button>
-  <button (click)="cambiarFiltro('Receta')" mat-raised-button color="accent">
-    Recetas
-  </button>
-</div>
-<div class="content">
-  <mat-card
-    class="card-prod"
-    *ngFor="let producto of productos | filtroProducto: filtroActual"
-  >
-    <mat-card-content>
-      <div class="producto">
-        <div class="imagen-producto">
-          <img
-            [src]="producto.file"
-            alt="no-image-producto"
-          />
+<mat-dialog-content class="mat-typography">
+  <h1>¡Tienda Calistenica!</h1>
+  <div class="group-btn">
+    <button (click)="cambiarFiltro('Truco')" mat-raised-button color="accent">
+      Trucos
+    </button>
+    <button (click)="cambiarFiltro('Receta')" mat-raised-button color="accent">
+      Recetas
+    </button>
+  </div>
+  <div class="content">
+    <mat-card
+      class="card-prod"
+      *ngFor="let producto of productos | filtroProducto: filtroActual"
+    >
+      <mat-card-content>
+        <div class="producto">
+          <div class="imagen-producto">
+            <img [src]="producto.file" alt="no-image-producto" />
+          </div>
+          <div class="detalle">
+            <h1>{{ producto.nombre }}</h1>
+            <h3>Precio: {{ producto.precio_pts }} pts.</h3>
+            <h4>{{ obtenerTipoProducto(producto.tipo_producto) }}</h4>
+          </div>
         </div>
-        <div class="detalle">
-          <h1>{{ producto.nombre }}</h1>
-          <h3>Precio: {{ producto.precio_pts }} pts.</h3>
-          <h4>{{ obtenerTipoProducto(producto.tipo_producto) }}</h4>
-        </div>
-      </div>
-    </mat-card-content>
-    <mat-card-actions align="end">
-      <button
-        [disabled]="validar()"
-        (click)="comprar(producto)"
-        color="danger"
-        mat-raised-button
-      >
-        Comprar
-      </button>
-    </mat-card-actions>
-  </mat-card>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button
+          [disabled]="validar()"
+          (click)="comprar(producto)"
+          color="danger"
+          mat-raised-button
+        >
+          Comprar
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="center">
   <h2 *ngIf="noMoney" class="nomoney">
     No tienes la cantidad suficiente de puntos...
   </h2>
-</div>
+</mat-dialog-actions>

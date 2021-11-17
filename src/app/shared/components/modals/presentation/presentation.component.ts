@@ -11,6 +11,7 @@ export class PresentationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    localStorage.setItem('noBody', 'false');
   }
 
   next(){

@@ -34,6 +34,7 @@ import { LogrosComponent } from './components/modals/logros/logros.component';
 import { ProductoDetailComponent } from './components/modals/producto-detail/producto-detail.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { WinAwardComponent } from './components/alert/win-award/win-award.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -65,6 +66,7 @@ FullCalendarModule.registerPlugins([
     MatSnackBarModule,
     YouTubePlayerModule,
     ReactiveFormsModule,
+    MatDialogModule,
     SharedModule,
     MatFormFieldModule,
     DragDropModule,

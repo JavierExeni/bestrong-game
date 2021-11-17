@@ -183,6 +183,9 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     let user = localStorage.getItem('user');
     if (user) this.cliente = JSON.parse(user);
+
+    let hasBody = localStorage.getItem('noBody');
+
     this.obtenerRutina();
 
     this.bodySubs = this.store.select('bodyInfo').subscribe(({ body }) => {
@@ -197,13 +200,16 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
             this.store.dispatch(
               cargarUsuarioSuccess({ cliente: this.cliente })
             );
-            Swal.fire({
-              icon: 'success',
-              title: `¡Tus calorias de mantenimiento son ${body.calorias}!`,
-              text: 'Recuerda tener esto bien en cuenta a la hora de hacer tu dieta.',
-              showConfirmButton: false,
-              timer: 5000,
-            });
+            if (hasBody == 'false') {
+              Swal.fire({
+                icon: 'success',
+                title: `¡Tus calorias de mantenimiento son ${body.calorias}!`,
+                text: 'Recuerda tener esto bien en cuenta a la hora de hacer tu dieta.',
+                showConfirmButton: false,
+                timer: 5000,
+              });
+              localStorage.setItem('noBody', 'true');
+            }
 
             this.bodySubs.unsubscribe();
           }
