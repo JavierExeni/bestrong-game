@@ -172,7 +172,7 @@ export class ActividadComponent implements OnInit, OnDestroy {
         });
       }
       this.pregunta_actual += 1;
-    }, 1000);
+    }, 2500);
   }
 
   obtenerRespuesta() {

@@ -12,5 +12,6 @@ export class Cliente {
     public puntos?: number,
     public bodyinfo?: number,
     public producto?: any[],
+    public logro?: any[],
   ) {}
 }

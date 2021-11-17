@@ -72,7 +72,7 @@ export class LeccionComponent implements OnInit, OnDestroy {
 
   hacerActividad() {
     const dialog_config = new MatDialogConfig();
-    dialog_config.disableClose = false;
+    dialog_config.disableClose = true;
     dialog_config.autoFocus = true;
     dialog_config.width = '50%';
     dialog_config.data = this.lecciones;

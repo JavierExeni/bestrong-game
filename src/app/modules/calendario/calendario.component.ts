@@ -13,6 +13,13 @@ import { Subscription } from 'rxjs';
 import { Rutina } from '../../shared/models/Workout/Rutina';
 import { updateRutina } from '../../store/actions/rutina.actions';
 import { Cliente } from '../../shared/models/User/Cliente';
+import { cargarUsuarioSuccess } from '../../store/actions/usuario.actions';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
+import { WinAwardComponent } from '../components/alert/win-award/win-award.component';
 
 @Component({
   selector: 'app-calendario',
@@ -40,7 +47,11 @@ export class CalendarioComponent implements OnInit {
   rutinaSubs: Subscription;
   ejeSubs: Subscription;
 
-  constructor(private store: Store<AppState>, private dialog: MatDialog) {}
+  constructor(
+    private store: Store<AppState>,
+    private dialog: MatDialog,
+    private _snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     let user = localStorage.getItem('user');
@@ -51,7 +62,6 @@ export class CalendarioComponent implements OnInit {
         this.rutina = rutina;
         this.store.dispatch(cargarEjercicio({ id: rutina.id }));
         this.configuration();
-        this.rutinaSubs.unsubscribe();
       }
     });
   }
@@ -181,10 +191,40 @@ export class CalendarioComponent implements OnInit {
     }
   }
 
-  nextLevel() {
+  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  openSnackBar(mensaje, buton) {
+    this._snackBar.openFromComponent(WinAwardComponent, {
+      data: {
+        message: mensaje,
+        button: buton,
+      },
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: 5000,
+    });
+  }
+
+  async nextLevel() {
     // Actualizar nivel del usuario
     // Dar primer logro
-    this.store.dispatch(
+
+    if (this.rutina.nivel == 1) {
+      this.cliente.bodyinfo = this.cliente.bodyinfo['id'];
+      // clase C
+      this.openSnackBar('Héroe Clase - C', 'OK');
+      this.cliente.logro = [1];
+    } else {
+      this.openSnackBar('Héroe Clase - B', 'OK');
+      this.cliente.logro.push(2);
+    }
+
+    await this.store.dispatch(cargarUsuarioSuccess({ cliente: this.cliente }));
+
+    console.log(this.rutina.id, this.cliente.id, this.rutina.nivel);
+    this.events = [];
+    await this.store.dispatch(
       updateRutina({
         rutina: this.rutina.id,
         user: this.cliente.id,

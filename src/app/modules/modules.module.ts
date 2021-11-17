@@ -32,6 +32,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { LogrosComponent } from './components/modals/logros/logros.component';
 import { ProductoDetailComponent } from './components/modals/producto-detail/producto-detail.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { WinAwardComponent } from './components/alert/win-award/win-award.component';
 
 FullCalendarModule.registerPlugins([
   // register FullCalendar plugins
@@ -54,11 +56,13 @@ FullCalendarModule.registerPlugins([
     ProfileComponent,
     LogrosComponent,
     ProductoDetailComponent,
+    WinAwardComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     ModulesRoutingModule,
+    MatSnackBarModule,
     YouTubePlayerModule,
     ReactiveFormsModule,
     SharedModule,

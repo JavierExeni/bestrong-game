@@ -27,7 +27,7 @@ export class UsuarioService {
 
   getRutinasByUser(id: number) {
     let body = {
-      user: 1,
+      user: id,
     };
     const url = `${environment.apibase}auth/user/get-rutina/`;
     return this.http.post(url, body);

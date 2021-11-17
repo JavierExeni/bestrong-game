@@ -129,7 +129,7 @@ export class SidebarComponent implements OnInit {
     const dialog_config = new MatDialogConfig();
     dialog_config.disableClose = false;
     dialog_config.autoFocus = true;
-    dialog_config.width = '50%';
+    dialog_config.width = '30%';
     dialog_config.data = this.cliente;
     let dialogo = this.dialog.open(LogrosComponent, dialog_config);
     dialogo.afterClosed().subscribe(

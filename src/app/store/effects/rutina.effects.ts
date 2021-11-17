@@ -41,9 +41,10 @@ export class RutinaEffects {
             map((rutina: any) => {
               return rutinaActions.cargarRutinaSuccess({ rutina: rutina });
             }),
-            catchError((error) =>
-              of(rutinaActions.cargarRutinaError({ payload: error }))
-            )
+            catchError((error) => {
+              console.log(error);
+              return of(rutinaActions.cargarRutinaError({ payload: error }));
+            })
           )
       )
     )

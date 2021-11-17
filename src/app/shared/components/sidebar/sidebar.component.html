@@ -1,11 +1,17 @@
-<div *ngIf="validar()" [ngClass]="sidebar_open == false ? 'sidebar close' : 'sidebar'">
+<div
+  *ngIf="validar()"
+  [ngClass]="sidebar_open == false ? 'sidebar close' : 'sidebar'"
+>
   <div class="logo-details">
     <i (click)="changeEventBtn()" class="bx bx-menu"></i>
     <span class="logo_name">BeStrong</span>
   </div>
   <div *ngIf="sidebar_open" class="progress">
-    <mat-progress-bar mode="determinate" [value]="getValue()"></mat-progress-bar>
-    <span id="puntos">{{cliente.puntos}} pts.</span>
+    <mat-progress-bar
+      mode="determinate"
+      [value]="getValue()"
+    ></mat-progress-bar>
+    <span id="puntos">{{ cliente.puntos }} pts.</span>
   </div>
   <ul class="nav-links">
     <li>
@@ -48,7 +54,7 @@
     </li>
     <li>
       <a (click)="abrirLogros()">
-        <i class='bx bx-trophy'></i>
+        <i class="bx bx-trophy"></i>
         <span class="link_name">Logros</span>
       </a>
       <ul class="sub-menu blank">
@@ -56,7 +62,7 @@
       </ul>
     </li>
     <li (click)="openProfile()">
-      <a >
+      <a>
         <i class="bx bxs-user"></i>
         <span class="link_name">Mi Perfil</span>
       </a>
@@ -80,7 +86,9 @@
           <!--<img src="image/profile.jpg" alt="profileImg">-->
         </div>
         <div class="name-job">
-          <div *ngIf="cliente" class="profile_name">{{cliente.first_name}}</div>
+          <div *ngIf="cliente" class="profile_name">
+            {{ cliente.first_name }}
+          </div>
           <div class="job">Web Desginer</div>
         </div>
         <i (click)="cerrarSesion()" class="bx bx-log-out"></i>
@@ -89,5 +97,6 @@
   </ul>
 </div>
 <section class="fullheight">
+  <app-dialog *ngIf="cliente.bodyinfo == null"></app-dialog>
   <router-outlet></router-outlet>
 </section>

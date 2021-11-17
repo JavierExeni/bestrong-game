@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Login } from 'src/app/shared/models/Auth/login';
 import { AuthService } from '../../services/authentication/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -36,6 +37,11 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('hasUser', 'true');
       },
       (err) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: err.error.detail,
+        })
         console.log(err);
       }
     );

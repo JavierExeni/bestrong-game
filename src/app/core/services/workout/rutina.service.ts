@@ -1,12 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Rutina } from '../../../shared/models/Workout/Rutina';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RutinaService {
   constructor(private http: HttpClient) {}
+
+  getRutinaById(id){
+    const url = `${environment.apibase}rutinas/rutina/${id}/`;
+    return this.http.get(url);
+  }
+
+  updateRutinaWithUser(id, rutina: Rutina){
+    const url = `${environment.apibase}rutinas/rutina/${id}/`;
+    return this.http.patch(url, rutina);
+  }
 
   getRutinasByNivel(nivel_rutina_id: number) {
     let body = {
@@ -16,7 +27,7 @@ export class RutinaService {
     return this.http.post(url, body);
   }
 
-  nextLevel(rutina: number, user: number, nivel: number) {
+  nextLevel(rutina: number, nivel: number, user: number) {
     let body = {
       rutina: rutina,
       nivel: nivel,

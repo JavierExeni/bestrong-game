@@ -183,6 +183,7 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     let user = localStorage.getItem('user');
     if (user) this.cliente = JSON.parse(user);
+    this.obtenerRutina();
 
     this.bodySubs = this.store.select('bodyInfo').subscribe(({ body }) => {
       if (body != null) {
@@ -209,12 +210,14 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
         }
       }
     });
-    this.obtenerRutina();
   }
 
   obtenerRutina() {
+    console.log(this.cliente.id);
     this.usuarService.getRutinasByUser(this.cliente.id).subscribe(
       (res: any) => {
+        console.log('AQUI RUTINA');
+        console.log(res);
         this.rutina = res;
         this.nivel = this.rutina.nivel;
       },
@@ -284,14 +287,32 @@ export class PrincipalComponent implements OnInit, AfterViewInit {
     this.movement();
   }
 
-  goToCalendar() {
+  goToCalendarNivel1() {
     // Necesito el nivel
+    if (this.rutina.nivel == 1) {
+      this.store.dispatch(cargarRutina({ id: this.rutina.id }));
+    } else {
+      this.store.dispatch(cargarRutina({ id: this.rutina.id - 1 }));
+    }
+    this.route.navigate(['/principal/calendario/']);
+  }
 
+  goToLessonNivel1() {
+    // Necesito el nivel
+    if (this.rutina.nivel == 1) {
+      this.route.navigate(['/principal/clase/', this.rutina.nivel]);
+    } else {
+      this.route.navigate(['/principal/clase/', this.rutina.nivel - 1]);
+    }
+  }
+
+  goToCalendarNivel2() {
+    // Necesito el nivel
     this.store.dispatch(cargarRutina({ id: this.rutina.id }));
     this.route.navigate(['/principal/calendario/']);
   }
 
-  goToLesson() {
+  goToLessonNivel2() {
     // Necesito el nivel
     this.route.navigate(['/principal/clase/', this.rutina.nivel]);
   }
